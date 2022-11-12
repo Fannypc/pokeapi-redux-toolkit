@@ -4,7 +4,7 @@ import TutorialDataService from "../services/tutorial.service";
 const initialState = [];
 
 export const retrieveTutorials = createAsyncThunk(
-  "pokemons/retrieve",
+  "pokemon/retrieve",
   async () => {
     const res = await TutorialDataService.get();
     return res.data;
