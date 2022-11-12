@@ -22,7 +22,5 @@ const tutorialSlice = createSlice({
   },
 });
 
-// export const { getPokemon } = tutorialSlice.actions;
-// export default tutorialSlice.reducer;
 const { reducer } = tutorialSlice;
 export default reducer;
