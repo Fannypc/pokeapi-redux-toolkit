@@ -1,26 +1,17 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import TutorialDataService from "../services/tutorial.service";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const initialState = [];
-
-export const retrieveTutorials = createAsyncThunk(
-  "pokemon/retrieve",
-  async () => {
-    const res = await TutorialDataService.get();
-    return res.data;
-  }
-);
-
-const tutorialSlice = createSlice({
-  name: "pokemon",
-  initialState,
-  extraReducers: {
-    [retrieveTutorials.fulfilled]: (state, action) => {
-      console.log("action.payload", action.payload);
-      return [...action.payload];
-    },
-  },
+export const apiSlice = createApi({
+  reducerPath: "apiSlice",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://pokemons-data.herokuapp.com/api/v1",
+  }),
+  tagTypes: ["Pokemon"],
+  endpoints: (builder) => ({
+    getPokemons: builder.query({
+      query: () => "/pokemons",
+      providesTags: ["Pokemon"],
+    }),
+  }),
 });
 
-const { reducer } = tutorialSlice;
-export default reducer;
+export const { useGetPokemonsQuery } = apiSlice;

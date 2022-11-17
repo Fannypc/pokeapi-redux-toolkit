@@ -1,0 +1,7 @@
+structure 1:
+https://www.bezkoder.com/redux-toolkit-crud-react-hooks/
+https://www.youtube.com/watch?v=SgnlgEEkqSo
+
+
+structure 2:
+https://www.positronx.io/how-to-create-react-crud-app-with-redux-rtk-endpoints/

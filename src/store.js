@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tutorialReducer from "./slices/tutorials";
+import { setUpListeners } from "@reduxjs/toolkit/query";
+import { apiSlice } from "./slices/tutorials";
 
-const reducer = {
-  tutorials: tutorialReducer,
-};
-
-const store = configureStore({ reducer: reducer, devTools: true });
-
-export default store;
+export const store = configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+});
+setUpListeners(store.dispatch);
